@@ -1,0 +1,534 @@
+// SASS COMPILE
+@import "mixins.scss";
+/*==============================================================================
+  # GENERAL
+==============================================================================*/
+* {
+  &:active,
+  &:focus,
+  &:hover,
+  &:visited {
+    outline: none !important;
+  }
+}
+
+html {
+  font-size: 62.5%;
+  overflow-x: hidden;
+  background-color: $bg-dark;
+}
+
+body {
+  margin: 0;
+  min-height: 100%;
+  max-width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  @include breakpoint(medium) {
+    overflow-y: scroll;
+    /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+a {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300;
+  color: $text-black;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 200;
+}
+
+.sr {
+  .case__background,
+  .case__whitecard {
+    visibility: hidden;
+  }
+}
+
+.hide {
+  &--large {
+    @media (min-width: $breakpoint-md + 1px) {
+      display: none;
+    }
+  }
+
+  &--medium {
+    @media (min-width: $breakpoint-sm + 1px) and (max-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+
+  &--small {
+    @media (max-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+}
+
+.reflectly {
+  &__section {
+    padding: 100px 50px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    @include breakpoint(small) {
+      padding: 100px 40px;
+    }
+  }
+
+  &__inner {
+    max-width: $breakpoint-lg;
+    width: 100%;
+  }
+
+  &__title {
+    @include font-size(40);
+    margin: 0 0 16px;
+    text-align: center;
+  }
+
+  &__subtext {
+    @include font-size(18);
+    font-family: "Open Sans", sans-serif;
+    color: $text-grey;
+    margin: 0;
+    max-width: 550px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__btn {
+    font-family: "Quicksand", sans-serif;
+    font-weight: 300;
+    border: 2px solid $accent-color;
+    @include font-size(16);
+    z-index: 3;
+    color: $accent-color;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 0 50px;
+    border-radius: 27px;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    line-height: 40px;
+    min-height: 40px;
+    @include transition(all 0.35s ease-in-out);
+
+    &:hover {
+      background-color: $accent-color;
+      color: #fff;
+    }
+
+    &--full {
+      background-color: $accent-color !important;
+      color: #fff;
+    }
+  }
+}
+
+.navbar-activator {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+
+  &.active + .navbar {
+    @include transform(translate3d(0, 0, 0));
+  }
+}
+
+/*==============================================================================
+  # HERO
+==============================================================================*/
+.hero {
+  position: relative;
+  background-color: #f2f7fb;
+  height: 100%;
+  height: 90vh;
+  min-height: 600px;
+  max-height: 900px;
+  max-width: 100%;
+  max-width: 100vw;
+  padding: 100px 48px;
+  overflow-x: hidden;
+  @include breakpoint(medium) {
+    height: auto;
+    max-height: initial;
+    padding: 160px 24px 96px 24px;
+  }
+
+  &__background-decoration {
+    position: absolute;
+    z-index: 0;
+    top: -450px;
+    left: 50%;
+    transform: translate3d(-50%, 0, 0);
+    margin-left: -600px;
+    width: 1200px;
+    height: 1200px;
+    border-radius: 50%;
+    background: #796fc1;
+    background: -webkit-linear-gradient(45deg, #796fc1 0%, #838beb 100%);
+    background: linear-gradient(45deg, #796fc1 0%, #838beb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6d52aa', endColorstr='#796fc1',GradientType=1 );
+    @media (max-width: 1145px) {
+      top: -450px;
+      left: 50%;
+      transform: translate3d(-50%, 0, 0);
+      margin-left: -450px;
+    }
+    @include breakpoint(medium) {
+      position: absolute;
+      top: -650px;
+      left: 50%;
+      width: 1600px;
+      min-width: 1600px;
+      transform: translate3d(-50%, 0, 0);
+      margin-left: auto;
+    }
+  }
+
+  &__inner {
+    max-width: $breakpoint-lg;
+  }
+
+  &__left-side {
+    @include breakpoint(medium) {
+      margin-bottom: 96px;
+    }
+  }
+
+  &__header {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    max-width: $breakpoint-lg + 96px;
+    padding: 0 48px;
+    margin: 0 auto;
+    @include breakpoint(medium) {
+      padding: 0 24px;
+    }
+  }
+
+  &__logo-text {
+    color: #fff;
+    font-weight: 700;
+    @include font-size(24);
+    cursor: default;
+    @include breakpoint(small) {
+      margin: 0 auto;
+    }
+  }
+
+  &__header-link {
+    color: #fff;
+    margin: 0 16px;
+    border-bottom: 2px solid transparent;
+    @include font-size(16);
+    padding: 5px 0;
+    opacity: 0;
+    position: relative;
+    top: 0;
+    @include animation(
+      fadeInUp 0.5s 1.25s cubic-bezier(0.6, 0.2, 0.1, 1) forwards
+    );
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:nth-child(2) {
+      @include animation-delay(1.4s);
+    }
+
+    &:nth-child(3) {
+      @include animation-delay(1.55s);
+    }
+
+    &:nth-child(4) {
+      @include animation-delay(1.7s);
+    }
+
+    &.active {
+      border-bottom: 2px solid $accent-color;
+    }
+  }
+
+  &__title {
+    max-width: 450px;
+    @include font-size(40);
+    font-weight: 400;
+    text-align: left;
+    color: #ffffff;
+    opacity: 0.87;
+    width: 100%;
+    position: relative;
+    margin: 0 0 32px;
+    @include animation(fadeInRight 0.5s 1s ease-in-out forwards);
+    opacity: 0;
+    @include breakpoint(medium) {
+      max-width: 440px;
+      text-align: center;
+    }
+    @include breakpoint(small) {
+      @include font-size(34);
+    }
+
+    span {
+      display: block;
+      position: relative;
+      opacity: 0;
+
+      &:nth-child(1) {
+        @include animation(fadeInRight 0.5s 1s ease-in-out forwards);
+      }
+
+      &:nth-child(2) {
+        @include animation(fadeInRight 0.5s 1.25s ease-in-out forwards);
+      }
+
+      &:nth-child(3) {
+        @include animation(fadeInRight 0.5s 1.5s ease-in-out forwards);
+      }
+    }
+  }
+
+  &__subtitle {
+    @include font-size(18);
+    max-width: 430px;
+    margin: 0 0 48px;
+    opacity: 0;
+    position: relative;
+    color: #ffffff;
+    @include animation(fadeInUp53 0.5s 1.5s ease-in-out forwards);
+    @include breakpoint(medium) {
+      text-align: center;
+    }
+  }
+
+  &__download-now {
+    @include animation(fadeInUp 0.5s 1.75s ease-in-out forwards);
+    opacity: 0;
+    position: relative;
+    border-radius: 5px;
+    img {
+      max-width: 100%;
+    }
+    &:last-child {
+      margin: 0 0 0 8px;
+      @include animation(fadeInUp 0.5s 1.85s ease-in-out forwards);
+      @include breakpoint(medium) {
+        margin: 16px 0 0 0;
+      }
+    }
+    &:active {
+      .hero__download-btn-wrapper {
+        transform: scale(0.96);
+      }
+      .hero__download-btn-shadow {
+        bottom: 6px;
+      }
+    }
+  }
+
+  &__download-btn-wrapper {
+    position: relative;
+    width: 220px;
+    height: 64px;
+    transition: all 0.25s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  &__download-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #000;
+    z-index: 1;
+    border-radius: 32px;
+    overflow: hidden;
+    img {
+      width: auto;
+      height: auto;
+      max-height: 52px;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -o-user-select: none;
+      user-select: none;
+      @include breakpoint(small) {
+        max-height: 48px;
+      }
+    }
+  }
+
+  &__download-btn-shadow {
+    position: absolute;
+    z-index: 0;
+    background-color: #000;
+    box-shadow: 0 8px 16px $text-black;
+    opacity: 0.32;
+    bottom: 2px;
+    top: 24px;
+    left: 36px;
+    right: 36px;
+    transition: all 0.25s ease-in-out;
+  }
+
+  &__cta-btn {
+    opacity: 0;
+    position: relative;
+    @include animation(fadeInRight 0.5s 1.5s ease-in-out forwards);
+  }
+
+  &__iphone {
+    z-index: 2;
+    max-width: 620px;
+    width: 100%;
+    max-height: 100%;
+    position: relative;
+    opacity: 0;
+    top: 0;
+    @include animation(fadeInUp 0.5s 0.75s ease-in-out forwards);
+    @include breakpoint(medium) {
+      margin-bottom: 48px;
+    }
+    @include breakpoint(small) {
+      width: 160%;
+    }
+  }
+}
+
+/*==============================================================================
+  # FOOTER SECTION
+==============================================================================*/
+.footer {
+  &__container {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    background-color: $bg-dark;
+    padding: 25px 50px;
+    z-index: 10;
+    position: relative;
+  }
+
+  &__text {
+    @include font-size(16);
+    font-family: "Quicksand", sans-serif;
+    color: $text-dark-accent;
+    font-weight: 200;
+    position: relative;
+    margin: 8px 0;
+    @include breakpoint(small) {
+      margin: 16px 0;
+    }
+    @media (min-width: $breakpoint-sm) {
+      span {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+/*==============================================================================
+  # ANIMATIONS
+==============================================================================*/
+@include keyframes(heroContentPop) {
+  0% {
+    margin-right: -50%;
+  }
+
+  100% {
+    margin-right: 0;
+  }
+}
+@include keyframes(fadeInUp) {
+  0% {
+    opacity: 0;
+    top: 25px;
+  }
+
+  100% {
+    opacity: 1;
+    top: 0;
+  }
+}
+@include keyframes(fadeInUp53) {
+  0% {
+    opacity: 0;
+    top: 25px;
+  }
+
+  100% {
+    opacity: 0.53;
+    top: 0;
+  }
+}
+
+@include keyframes(fadeInRight) {
+  0% {
+    opacity: 0;
+    left: 50px;
+  }
+
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+@include keyframes(fadeInRight87) {
+  0% {
+    opacity: 0;
+    left: 50px;
+  }
+
+  100% {
+    opacity: 0.87;
+    left: 0;
+  }
+}
+@include keyframes(fadeOutDown) {
+  0% {
+    opacity: 1;
+    top: 0;
+  }
+
+  100% {
+    opacity: 0;
+    top: 25px;
+  }
+}
+@include keyframes(fadeOutRight) {
+  0% {
+    opacity: 1;
+    left: 0;
+  }
+
+  100% {
+    opacity: 0;
+    left: 50px;
+  }
+}

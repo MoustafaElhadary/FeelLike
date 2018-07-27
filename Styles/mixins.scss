@@ -1,0 +1,119 @@
+/*==============================================================================
+  # VARIABLES
+==============================================================================*/
+$true-black: #000000;
+$primary-color: #796fc1;
+$accent-color: #17b9e6;
+$text-black: #1d1d26;
+$text-grey: #8a8a8a;
+$bg-grey: #fafafa;
+$bg-dark: #2d3039;
+$text-dark-accent: #7d869e;
+
+// Flex variables
+$percent-interval: 5;
+$flex-interval: 100 / $percent-interval;
+
+$breakpoint-xs: 350px;
+$breakpoint-sm: 600px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1240px;
+
+/*==============================================================================
+  # MIXINS
+==============================================================================*/
+@mixin font-family($font-name) {
+  @if $font-name == "ave-bold" {
+    font-family: "Avenir Bold", "Nunito", Open Sans, sans-serif !important;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 2px;
+  }
+}
+@mixin font-size($size) {
+  font-size: $size + px;
+  font-size: #{$size / 10}rem;
+}
+@mixin font-size-lh($size) {
+  font-size: $size + px;
+  font-size: #{$size / 10}rem;
+  line-height: $size + px;
+  line-height: #{$size / 10}rem;
+}
+@mixin prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -moz-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  -o-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+@mixin transition($transition) {
+  @include prefix("transition", #{$transition});
+}
+@mixin transition-delay($transition-delay) {
+  @include prefix("transition-delay", #{$transition-delay});
+}
+@mixin transform($transform) {
+  @include prefix("transform", #{$transform});
+}
+@mixin animation($animation) {
+  @include prefix("animation", #{$animation});
+}
+@mixin animation-delay($animation-delay) {
+  @include prefix("animation-delay", #{$animation-delay});
+}
+@mixin keyframes($name) {
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
+  @-moz-keyframes #{$name} {
+    @content;
+  }
+  @-ms-keyframes #{$name} {
+    @content;
+  }
+  @-o-keyframes #{$name} {
+    @content;
+  }
+  @keyframes #{$name} {
+    @content;
+  }
+}
+@function color-control($color) {
+  @if (lightness($color) > 50) {
+    @return #000;
+  } @else {
+    @return #fff;
+  }
+}
+@mixin breakpoint($point) {
+  @if $point == "xsmall" {
+    @media (max-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $point == "small" {
+    @media (max-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $point == "medium" {
+    @media (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $point == "medium-mm" {
+    @media (min-width: $breakpoint-sm + 1px) and (max-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $point == "large" {
+    @media (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $point == "large-mm" {
+    @media (min-width: $breakpoint-md + 1px) and (max-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $point == "xl" {
+    @media (min-width: $breakpoint-lg + 1px) {
+      @content;
+    }
+  }
+}
